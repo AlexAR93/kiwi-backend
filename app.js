@@ -15,7 +15,7 @@ app.use(express.static(publicPath));
 /* Rutas */
 app.use('/', rutaPrincipal);
 app.use('/tareas', rutaTareas);
-app.use('/', rutaUsuarios);
+app.use('/auth', rutaUsuarios);
 
 app.use((req, res, next) => {
     res.status(404).send('notFound')
