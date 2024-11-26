@@ -32,4 +32,4 @@ EventSchema.method('toJSON',function(){
 
 const Event=model('Event', EventSchema);
 
-module.exports = {Event,EventSchema};
+module.exports = Event;

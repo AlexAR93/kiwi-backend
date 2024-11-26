@@ -17,4 +17,4 @@ const SchemaUser= Schema({
 })
 
 const User=model('User', SchemaUser);
-module.exports = {User};
+module.exports = User;

@@ -14,6 +14,9 @@ configDotenv();
 // Database
 connectToMongo();
 
+//middleware para que node reciba bien los JSON
+app.use(express.json());
+
 /* Carpeta public */
 const publicPath = path.resolve(__dirname, '../public');
 app.use(express.static(publicPath));

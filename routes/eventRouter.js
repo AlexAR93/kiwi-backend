@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const { createEvent, deleteEvent, getEvents, updateEvent } = require("../controllers/Event.controller.js");
 const tokenValidator = require("../middlewares/token-validator.js");
-const { check } = require("express-validator");
 const fieldValidator = require("../middlewares/field-validator.js");
-const { isDate } = require("../helpers/is-date.js");
+const isDate = require("../helpers/is-date.js");
+const { check } = require("express-validator");
 
 const app = Router();
 
