@@ -1,14 +1,24 @@
-const express = require('express');
-const router = express.Router();
-const path = require('node:path');
+const { Router } = require("express");
+const { check } = require("express-validator");
+const {  toCreateUser, toLogin, toRenew } = require('../controllers/Auth.controller.js');
+const fieldValidator = require('../middlewares/field-validator.js');
+const tokenValidator = require('../middlewares/token-validator.js');
 
-router.get('/login', function(req, res) {
-    res.sendFile(path.resolve(__dirname, '../views/login.html'))
-});
+const app = Router();
 
-router.get('/register', function(req, res) {
-    res.sendFile(path.resolve(__dirname, '../views/register.html'))
-});
+//Registro de usuario
+app.post('/register', [
+    //Estos son middlewares, aparte del front, son otra capa de seguridad para que completen bien los campos, ya que el front es muy vulnerable.
+    check('name', 'El nombre es obligatorio').not().isEmpty(),
+    check('email', 'El email es obligatorio').isEmail(),
+    check('password', 'El password debe de ser de 6 caracteres').isLength({min:6}),
+    fieldValidator
+], toCreateUser);
 
+//Login de Usuario
+app.post('/', toLogin);
 
-module.exports = router;
+//Renovar sesión en caso de caducar
+app.get('/renew', tokenValidator, toRenew);
+
+module.exports = app;
