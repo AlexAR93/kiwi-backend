@@ -6,6 +6,7 @@ const rutaUsuarios = require('./routes/authRouter.js');
 const rutaTareas = require('./routes/taskRouter.js');
 const eventRouter = require('./routes/eventRouter.js');
 const { configDotenv } = require('dotenv');
+const cors = require('cors');
 const connectToMongo = require('./db/config.js');
 
 //Variables de entorno para que funcione
@@ -13,6 +14,9 @@ configDotenv();
 
 // Database
 connectToMongo();
+
+//CORS para que permita, al front, conectarse
+app.use(cors())
 
 //middleware para que node reciba bien los JSON
 app.use(express.json());
