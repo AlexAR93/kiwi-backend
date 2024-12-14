@@ -52,7 +52,7 @@ const toLogin = async (req, res) => {
             });
         }
 
-        // passwords confirm
+        // passwords confirmación
         const validPassword = compareSync(password, user.password);
 
         if (!validPassword) {

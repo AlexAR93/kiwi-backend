@@ -3,7 +3,8 @@ const path = require('node:path');
 const app = express();
 const rutaPrincipal = require('./routes/mainRouter.js');
 const rutaUsuarios = require('./routes/authRouter.js');
-const rutaTareas = require('./routes/taskRouter.js');
+const boardRouter = require('./routes/boardRouter.js');
+const taskRouter = require('./routes/taskRouter.js');
 const eventRouter = require('./routes/eventRouter.js');
 const { configDotenv } = require('dotenv');
 const cors = require('cors');
@@ -28,9 +29,10 @@ app.use(express.static(publicPath));
 
 /* Rutas */
 app.use('/', rutaPrincipal);
-app.use('/tareas', rutaTareas);
+app.use('/pizarras', boardRouter);
 app.use('/eventos', eventRouter);
 app.use('/auth', rutaUsuarios);
+app.use('/tareas', taskRouter);
 
 app.use((req, res) => {
     res.status(404).send('notFound')
