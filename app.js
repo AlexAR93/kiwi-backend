@@ -23,7 +23,7 @@ connectToMongo();
 app.use(cors());
 app.use(express.json());
 
-// Servir archivos estáticos desde 'public'
+// archivos estáticos desde 'public'
 const publicPath = path.resolve(__dirname, 'public');
 app.use(express.static(publicPath));
 
@@ -46,6 +46,6 @@ app.use((req, res) => {
 
 /* Server */
 const port = process.env.PORT || 3000;
-app.listen(port, (err) => {
+app.listen(port, '0.0.0.0', (err) => {
   console.log(err ? err : `Servidor iniciado en http://localhost:${port}`);
 });
